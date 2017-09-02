@@ -45,6 +45,7 @@ alien.setposition(-200, 250 )
 
 
 playerspeed = 12
+alienspeed = 3
 
 def moveleft():
     x = player.xcor()
@@ -64,6 +65,24 @@ def moveright():
 turtle.listen()
 turtle.onkey(moveleft, "Left")
 turtle.onkey(moveright, "Right")
+
+while True:
+    x = alien.xcor()
+    x += alienspeed
+    alien.setx(x)
+    if x > 280:
+        alienspeed = alienspeed * -1
+        y = alien.ycor()
+        y -= 40
+        alien.sety(y)
+
+
+
+    if x < -280:
+        alienspeed = alienspeed * -1
+        y = alien.ycor()
+        y -= 40
+        alien.sety(y)
 
 
 delay = input('press enter to finsh')
