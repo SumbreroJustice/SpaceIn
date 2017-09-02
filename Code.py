@@ -4,10 +4,14 @@ from tkinter import *
 import turtle
 import os
 
+
+#Create Screen
 wn = turtle.Screen()
 wn.bgcolor("Black")
 wn.title("Space Invaders")
 
+
+#Create playable screen
 border_pen = turtle.Turtle()
 border_pen.speed(0)
 border_pen.penup()
@@ -20,6 +24,7 @@ for side in range(4):
     border_pen.lt(90)
 border_pen.hideturtle()
 
+#Create Player
 player = turtle.Turtle()
 player.color("blue")
 player.shape("square")
@@ -27,6 +32,38 @@ player.penup()
 player.speed(0)
 player.setposition(0, -250)
 player.setheading(45)
+
+
+#Create Enemy
+alien = turtle.Turtle()
+alien.color("green")
+alien.shape("circle")
+alien.penup()
+alien.speed(0)
+alien.setposition(-200, 250 )
+
+
+
+playerspeed = 12
+
+def moveleft():
+    x = player.xcor()
+    x -= playerspeed
+    if x < -280:
+        x = -280
+    player.setx(x)
+
+def moveright():
+    x = player.xcor()
+    x += playerspeed
+    if x > 280:
+        x = 280
+    player.setx(x)
+
+#Move
+turtle.listen()
+turtle.onkey(moveleft, "Left")
+turtle.onkey(moveright, "Right")
 
 
 delay = input('press enter to finsh')
